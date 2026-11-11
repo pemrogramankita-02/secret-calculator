@@ -37,7 +37,6 @@ const zeroBtn=document.querySelector('[data-key="0"]');
 zeroBtn.addEventListener('pointerdown',()=>{holdTriggered=false;holdTimer=setTimeout(()=>{holdTriggered=true;entered='';if(!pinSalt)setupFlow();else openAccess()},850)});
 ['pointerup','pointerleave','pointercancel'].forEach(ev=>zeroBtn.addEventListener(ev,()=>clearTimeout(holdTimer)));
 zeroBtn.addEventListener('click',e=>{if(holdTriggered){e.stopImmediatePropagation();holdTriggered=false}},true);
-$('helpBtn').onclick=()=>showModal(`<h2>Petunjuk kalkulator</h2><p>Kalkulator dapat digunakan normal. Untuk pengaturan PIN pertama kali, tekan dan tahan tombol 0 selama sekitar satu detik. Setelah PIN dibuat, masukkan PIN angka pada kalkulator lalu tekan = untuk membuka Vault.</p><p>Jika angka PIN menghasilkan perhitungan, kalkulator tetap dapat dipakai seperti biasa.</p>`);
 function showVault(){$('calculator').classList.add('hidden');$('vault').classList.remove('hidden');loadFiles()}
 function lockVault(){unlockedKey=null;$('vault').classList.add('hidden');$('calculator').classList.remove('hidden');current='0';expression='';renderCalc()}
 $('lockBtn').onclick=lockVault;
