@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="Kalkulator pribadi dengan penyimpanan file terenkripsi di perangkat.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <title>Kalkulator</title>
+</head>
+<body>
+  <main id="calculator" class="screen calculator-screen">
+    <header class="calc-header"><span>Kalkulator</span><button id="helpBtn" class="icon-btn" aria-label="Petunjuk">•••</button></header>
+    <section class="calc-display">
+      <div id="expression" class="expression"></div>
+      <div id="display" class="display">0</div>
+    </section>
+    <section id="keypad" class="keypad" aria-label="Tombol kalkulator">
+      <button class="key utility" data-key="AC">AC</button><button class="key utility" data-key="sign">±</button><button class="key utility" data-key="%">%</button><button class="key operator" data-key="/">÷</button>
+      <button class="key" data-key="7">7</button><button class="key" data-key="8">8</button><button class="key" data-key="9">9</button><button class="key operator" data-key="*">×</button>
+      <button class="key" data-key="4">4</button><button class="key" data-key="5">5</button><button class="key" data-key="6">6</button><button class="key operator" data-key="-">−</button>
+      <button class="key" data-key="1">1</button><button class="key" data-key="2">2</button><button class="key" data-key="3">3</button><button class="key operator" data-key="+">+</button>
+      <button class="key zero" data-key="0">0</button><button class="key" data-key=".">.</button><button class="key operator equals" data-key="=">=</button>
+    </section>
+    <p class="calc-hint">Tekan dan tahan tombol <b>0</b> untuk pengaturan awal brankas.</p>
+  </main>
+
+  <main id="vault" class="screen vault-screen hidden">
+    <header class="vault-header">
+      <div><div class="eyebrow">RUANG PRIBADI</div><h1>Private Vault</h1><p>File terenkripsi di perangkat ini</p></div>
+      <button id="lockBtn" class="lock-btn">Kunci <span>↗</span></button>
+    </header>
+    <section class="storage-card">
+      <div class="storage-top"><span>Penyimpanan terpakai</span><strong id="storageCount">0 file</strong></div>
+      <div class="storage-number" id="storageSize">0 B</div>
+      <div class="storage-track"><i id="storageBar"></i></div>
+      <small>Ruang tersedia mengikuti kapasitas browser dan perangkat.</small>
+    </section>
+    <section class="vault-actions">
+      <button id="importBtn" class="primary-btn">＋ Tambah file</button>
+      <button id="folderBtn" class="secondary-btn">＋ Folder</button>
+      <input id="fileInput" type="file" multiple hidden>
+    </section>
+    <nav class="category-tabs">
+      <button class="tab active" data-filter="all">Semua</button>
+      <button class="tab" data-filter="image">Foto</button>
+      <button class="tab" data-filter="video">Video</button>
+      <button class="tab" data-filter="document">Dokumen</button>
+      <button class="tab" data-filter="other">Lainnya</button>
+    </nav>
+    <div class="section-heading"><h2>File tersimpan</h2><input id="searchInput" type="search" placeholder="Cari file..." aria-label="Cari file"></div>
+    <div id="fileList" class="file-grid"></div>
+    <section class="tools-card">
+      <h2>Keamanan & cadangan</h2>
+      <button id="backupBtn" class="tool-row"><span>⇩</span><span><b>Ekspor cadangan terenkripsi</b><small>Simpan file backup di lokasi aman</small></span><i>›</i></button>
+      <button id="restoreBtn" class="tool-row"><span>↥</span><span><b>Pulihkan cadangan</b><small>Impor backup Secret Calculator</small></span><i>›</i></button>
+      <input id="backupInput" type="file" accept=".scvault,application/json" hidden>
+      <button id="changePinBtn" class="tool-row"><span>⌑</span><span><b>Ubah PIN</b><small>Ganti kode akses brankas</small></span><i>›</i></button>
+      <button id="aboutBtn" class="tool-row"><span>ⓘ</span><span><b>Informasi keamanan</b><small>Batasan penyimpanan PWA</small></span><i>›</i></button>
+    </section>
+    <footer>SECRET CALCULATOR <span>•</span> LOCAL VAULT</footer>
+  </main>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card"><button id="modalClose" class="modal-close" aria-label="Tutup">×</button><div id="modalContent"></div></div>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>

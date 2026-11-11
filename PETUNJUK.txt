@@ -1,0 +1,34 @@
+SECRET CALCULATOR — PETUNJUK PEMASANGAN
+
+ISI PAKET
+- index.html       Tampilan kalkulator dan brankas
+- style.css        Desain responsif gaya kalkulator iPhone
+- app.js           Kalkulator, PIN, enkripsi, impor/ekspor file
+- manifest.json    Konfigurasi PWA
+- service-worker.js Cache offline
+- icons/           Ikon aplikasi
+
+CARA MENJALANKAN
+PWA membutuhkan HTTPS (atau localhost) agar Web Crypto, IndexedDB, dan Service Worker aktif.
+1. Unggah seluruh isi folder ke hosting HTTPS statis, misalnya GitHub Pages atau layanan hosting statis.
+2. Pastikan index.html berada di root dan semua file/folder ikut diunggah.
+3. Buka URL melalui Chrome Android.
+4. Tekan menu Chrome > Tambahkan ke layar utama / Instal aplikasi.
+5. Buka aplikasi. Tekan dan tahan tombol 0 sekitar 1 detik untuk membuat PIN pertama.
+6. Setelah PIN dibuat, ketik PIN angka pada kalkulator lalu tekan = untuk membuka Vault.
+7. Tambahkan file melalui tombol Tambah file.
+
+PENYIMPANAN DAN KEAMANAN
+- File dienkripsi di perangkat dengan AES-GCM 256-bit.
+- PIN diproses dengan PBKDF2 SHA-256 (310.000 iterasi); PIN tidak disimpan sebagai teks biasa.
+- Tidak ada backend/server dan file tidak dikirim ke layanan eksternal oleh aplikasi ini.
+- Data tersimpan dalam IndexedDB browser. Browser/OS dapat menghapus data situs, jadi ekspor backup secara berkala.
+- Backup .scvault berisi ciphertext, salt, dan verifier. Simpan backup di tempat aman.
+- Jika PIN terlupa, aplikasi tidak dapat membuka file. Tidak ada fitur reset PIN tanpa mengetahui PIN lama.
+- Setelah file tersimpan dan diverifikasi, aplikasi tidak menghapus file asli otomatis. Hapus file asli secara manual jika sudah yakin.
+- Fitur folder saat ini berupa placeholder; pengelompokan folder belum diimplementasikan.
+- Preview langsung disediakan untuk gambar dan video. Jenis file lain dapat diekspor untuk dibuka dengan aplikasi HP.
+- Instalasi PWA tidak sama dengan APK native. Penghapusan data browser dapat menghilangkan penyimpanan lokal.
+
+BATASAN VERSI AWAL
+Versi ini adalah starter yang berfungsi untuk kalkulator, PIN, enkripsi file, penyimpanan lokal, pencarian kategori, ekspor file, dan backup/pemulihan pada instalasi dengan PIN yang sama. Uji terlebih dahulu dengan file non-penting sebelum menyimpan data penting.
